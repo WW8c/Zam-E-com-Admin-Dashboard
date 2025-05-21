@@ -1,0 +1,147 @@
+.login-box {
+  width: 480px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  transition: 0.3s ease;
+.form-heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      input[type='email'],
+      input[type='password'],
+      input[type='text'] {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #E4E7E9;
+        border-radius: 1px;
+        outline: none;
+        font-size: 14px;
+
+        &:focus {
+          border-color: #FA8232;
+        }
+      }
+
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .forgot-password-link {
+          text-decoration: none;
+          color: #2da5f3;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+
+      .password-input {
+        position: relative;
+
+        input {
+          padding-right: 40px;
+        }
+
+        .icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 18px;
+          color: #FA8232;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .btn-signin {
+      background: #FA8232;
+      color: #fff;
+      padding: 14px;
+      font-size: 14px;
+      margin-top: 10px;
+      font-weight: 600;
+      border-radius: 2px;
+      cursor: pointer;
+      border: 1px solid #FA8232;
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      .arrow {
+        font-size: 16px;
+        margin-left: 4px;
+      }
+
+      &:hover {
+        background: white;
+        color: #FA8232;
+        border: 1px solid #FA8232;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    margin: 70px auto;
+    padding: 24px;
+
+    .form {
+      .form-group {
+        input[type='email'],
+        input[type='password'],
+        input[type='text'] {
+          padding: 11px;
+          font-size: 13px;
+        }
+
+        .label-row {
+          align-items: flex-start;
+          gap: 4px;
+
+          .forgot-password-link {
+            font-size: 13px;
+          }
+        }
+
+        .password-input {
+          .icon {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .btn-signin {
+        padding: 12px;
+        font-size: 13px;
+      }
+    }
+  }
+}

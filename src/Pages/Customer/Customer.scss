@@ -1,0 +1,32 @@
+.customer-page {
+    .search-container {
+      margin-bottom: 20px;
+    }
+  
+    .name-cell {
+      display: flex;
+      align-items: center;
+  
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 12px;
+      }
+  
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+    // Responsive: Horizontal scroll for small screens
+  @media (max-width: 768px) {
+    .ant-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .ant-table {
+      min-width: 800px; // Or set this to the actual width you want for scroll
+    }
+  }

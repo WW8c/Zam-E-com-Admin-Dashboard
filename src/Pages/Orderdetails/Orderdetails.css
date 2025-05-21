@@ -1,0 +1,220 @@
+@charset "UTF-8";
+.order-details {
+  width: 100%;
+  max-width: 530px;
+}
+.order-details .header3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.order-details .header3 .back-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+.order-details .header3 .title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.order-details .header3 .breadcrumb {
+  font-size: 14px;
+  color: #8c8c8c;
+  margin-top: 2px;
+}
+.order-details .card {
+  background: white;
+  border-radius: 12px;
+}
+.order-details .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.order-details .row .box_full {
+  color: rgb(35, 34, 34);
+  font-size: 14px;
+}
+.order-details .row .box_full .label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 15px;
+}
+.order-details .row .box {
+  flex: 1;
+  color: rgb(35, 34, 34);
+  font-size: 14px;
+}
+.order-details .row .box.full {
+  flex: 100%;
+}
+.order-details .row .box .label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 15px;
+}
+.order-details .row .box .info-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  border: 1px solid #e2e1e1;
+  border-radius: 6px;
+  background: white;
+}
+.order-details .row .box .info-box img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+.order-details .row .box .input-box {
+  border: 1px solid #e2e1e1;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+.order-details .status-options {
+  display: flex;
+  gap: 20px;
+}
+.order-details .status-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.order-details .status-options input[type=radio] {
+  margin: 0;
+}
+.order-details .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 30px;
+}
+.order-details .actions .cancel {
+  background: transparent;
+  border: none;
+  color: red;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+.order-details .actions .update {
+  background: #fa8232;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.digital-packages {
+  margin-top: 24px;
+}
+.digital-packages h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.digital-packages .digital-product-section h4 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.digital-packages .digital-product-section .row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.digital-packages .digital-product-section .box {
+  flex: 1;
+}
+
+.non-digital-info {
+  margin-top: 24px;
+}
+.non-digital-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.non-digital-info .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.non-digital-info .row .box {
+  flex: 1;
+  color: rgb(35, 34, 34);
+  font-size: 14px;
+}
+.non-digital-info .row .box.full {
+  flex: 100%;
+}
+.non-digital-info .row .box .label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 15px;
+}
+.non-digital-info .row .box .input-box {
+  border: 1px solid #e2e1e1;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+/* 🌐 Mobile Responsiveness (max-width: 768px) */
+@media (max-width: 768px) {
+  .order-details {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+  .order-details .header3 {
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .order-details .header3 .title {
+    font-size: 18px;
+  }
+  .order-details .header3 .breadcrumb {
+    font-size: 13px;
+  }
+  .order-details .row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .order-details .row .box {
+    flex: 100%;
+  }
+  .order-details .actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .order-details .actions .update,
+  .order-details .actions .cancel {
+    width: 100%;
+  }
+  .digital-packages .row,
+  .non-digital-info .row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .digital-packages .row .box,
+  .non-digital-info .row .box {
+    flex: 100%;
+  }
+}/*# sourceMappingURL=Orderdetails.css.map */

@@ -1,0 +1,27 @@
+.customer-page .search-container {
+  margin-bottom: 20px;
+}
+.customer-page .name-cell {
+  display: flex;
+  align-items: center;
+}
+.customer-page .name-cell .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 12px;
+}
+.customer-page .name-cell span {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+  .ant-table {
+    min-width: 800px;
+  }
+}/*# sourceMappingURL=Customer.css.map */

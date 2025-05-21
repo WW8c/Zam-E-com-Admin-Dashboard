@@ -1,0 +1,156 @@
+.email-verification-container {
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 33px;
+    box-shadow: 0px 8px 40px 0px #0000001F;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+  
+    .title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #191C1F;
+    }
+  
+    .description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+  
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+  
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+  
+        .label {
+          font-weight: 600;
+          font-size: 14px;
+        }
+  
+        .resend-link {
+          font-size: 13px;
+          color: #007bff;
+          cursor: pointer;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+  
+      .code-input-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+  
+      .code-box {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #E4E7E9;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.3s;
+  
+        &:focus {
+          border-color: #FA8232;
+        }
+      }
+    }
+  
+    .verify-button {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      background-color: #FA8232;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+  
+      &:hover {
+        background-color: #fff;
+        border: 1px solid #FA8232;
+        color: #FA8232;
+      }
+    }
+  }
+  
+  // Error Message Styles
+  .error-message {
+    color: red;
+    font-size: 12px;
+    text-align:left;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .email-verification-container {
+      width: 90%;
+      margin: 100px auto;
+      padding: 24px;
+      box-shadow: 0px 4px 20px 0px #0000001F;
+  
+      .title {
+        font-size: 18px;
+      }
+  
+      .description {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+  
+      .form-group {
+        margin-bottom: 20px;
+  
+        .label-row {
+          align-items: flex-start;
+          gap: 4px;
+  
+          .label {
+            font-size: 13px;
+          }
+  
+          .resend-link {
+            font-size: 12px;
+          }
+        }
+  
+        .code-input-container {
+          gap: 6px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+  
+        .code-box {
+          width: 38px;
+          height: 38px;
+          font-size: 18px;
+        }
+      }
+  
+      .verify-button {
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+  }
+  

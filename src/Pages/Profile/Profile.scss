@@ -1,0 +1,115 @@
+// Profile container
+.profile-container {
+  max-width: 1000px;
+//   margin: 40px auto;
+margin-bottom: 40px;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  
+//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+
+  .profile-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .profile-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .profile-basic-info {
+      flex: 2;
+      min-width: 300px;
+
+      .ant-form-item-label > label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      .ant-input {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+
+    }
+  }
+}
+      .custom-save-btn {
+    padding: 12px ;
+    background-color: #fa8232;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid #fa8232;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 5px;
+    transition: background-color .3s ease;
+
+      &:hover {
+      background-color: white; /* Hover effect */
+      border: 1px solid #FA8232;
+      color: #FA8232;
+    }
+      }
+
+// Change Password Section
+.change-password-container {
+  max-width: 1000px;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 12px;
+    border: 1px solid #f0f0f0;
+  
+//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+
+  .change-password-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .ant-form-item-label > label {
+    font-weight: 500;
+    color: #555;
+  }
+
+  .ant-input-password {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .profile-container,
+  .change-password-container {
+    padding: 20px;
+  }
+
+  .profile-container .profile-content {
+    flex-direction: column;
+    gap: 20px;
+
+    .profile-img-section,
+    .profile-basic-info {
+      width: 100%;
+    }
+
+    .profile-img-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

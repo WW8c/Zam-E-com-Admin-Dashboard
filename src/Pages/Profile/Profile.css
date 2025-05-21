@@ -1,0 +1,92 @@
+.profile-container {
+  max-width: 1000px;
+  margin-bottom: 40px;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+.profile-container .profile-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+.profile-container .profile-content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.profile-container .profile-content .profile-basic-info {
+  flex: 2;
+  min-width: 300px;
+}
+.profile-container .profile-content .profile-basic-info .ant-form-item-label > label {
+  font-weight: 500;
+  color: #555;
+}
+.profile-container .profile-content .profile-basic-info .ant-input {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.custom-save-btn {
+  padding: 12px;
+  background-color: #fa8232;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid #fa8232;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 5px;
+  transition: background-color 0.3s ease;
+}
+.custom-save-btn:hover {
+  background-color: white; /* Hover effect */
+  border: 1px solid #FA8232;
+  color: #FA8232;
+}
+
+.change-password-container {
+  max-width: 1000px;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+.change-password-container .change-password-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+.change-password-container .ant-form-item-label > label {
+  font-weight: 500;
+  color: #555;
+}
+.change-password-container .ant-input-password {
+  padding: 10px;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .profile-container,
+  .change-password-container {
+    padding: 20px;
+  }
+  .profile-container .profile-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .profile-container .profile-content .profile-img-section,
+  .profile-container .profile-content .profile-basic-info {
+    width: 100%;
+  }
+  .profile-container .profile-content .profile-img-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}/*# sourceMappingURL=Profile.css.map */
