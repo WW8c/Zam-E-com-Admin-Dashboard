@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import './Logout.scss';
-import { EyeTwoTone, EyeInvisibleOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import {
+  EyeTwoTone,
+  EyeInvisibleOutlined,
+  ArrowRightOutlined,
+} from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Logout = () => {
+const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     let isValid = true;
@@ -19,6 +27,7 @@ const Logout = () => {
     setEmailError('');
     setPasswordError('');
 
+    // Validation
     if (!email.trim()) {
       setEmailError('Email is required.');
       isValid = false;
@@ -40,12 +49,35 @@ const Logout = () => {
 
     if (!isValid) return;
 
-    // Proceed with login logic
-    console.log('Signed in successfully:', { email, password });
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+     if (response.ok) {
+          toast.success('Sign In successful!');
+          // Store token in localStorage (assuming your backend returns { token: '...' })
+          localStorage.setItem('authToken', data.token);
+          // Redirect to homepage
+          navigate('/');
+      } else {
+        toast.error(data.message || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Sign-in failed:', error);
+      toast.error('Server error. Please try again.');
+    }
   };
 
   return (
     <div className="login-box">
+      <ToastContainer position="top-right" />
       <h2 className="form-heading">Sign In</h2>
       <form className="form" onSubmit={handleSignIn}>
         <div className="form-group">
@@ -58,7 +90,6 @@ const Logout = () => {
           />
           {emailError && <p className="error-message">{emailError}</p>}
         </div>
-
         <div className="form-group">
           <div className="label-row">
             <label>Password</label>
@@ -95,4 +126,4 @@ const Logout = () => {
   );
 };
 
-export default Logout;
+export default Login;

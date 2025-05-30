@@ -1,17 +1,22 @@
 import { useState } from 'react';
 import { Button, Spin, Modal, Alert } from 'antd';
 import { LogoutOutlined, CloseOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+
 import './LogoutConfirm.scss';
 
 const LogoutConfirmation = ({ onClose }) => {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const handleLogout = () => {
-    setIsLoggingOut(true);
-    setTimeout(() => {
-      window.location.href = '/logout';
-    }, 1500);
-  };
+  const navigate = useNavigate();
+ const handleLogout = () => {
+ console.log('Logging out...');
+  localStorage.removeItem('authToken'); // Clear the auth token!
+  setIsLoggingOut(true);
+  setTimeout(() => {
+    navigate('/logout', { replace: true });
+  }, 1500);
+};
 
   const handleCancel = () => {
     if (onClose) onClose(); // Close the modal using parent-provided method

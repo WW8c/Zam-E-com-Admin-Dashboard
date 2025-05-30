@@ -25,9 +25,12 @@ import {
 } from '@ant-design/icons';
 import './Products.scss';
 import { useNavigate ,useLocation} from 'react-router-dom';
+import axios from 'axios';
 const { Title } = Typography;
 const { Dragger } = Upload;
 const { TextArea } = Input;
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Add this utility function at the top of your component
 const getBase64 = (file) => {
@@ -72,17 +75,34 @@ const Products = () => {
   const storageInputRef = useRef(null);
   const [form] = Form.useForm();
   const [showForm, setShowForm] = useState(false);
-  const [data, setData] = useState(initialData);
+const [data, setData] = useState([]);
+
   const [editingKey, setEditingKey] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
   
 const navigate = useNavigate();
 const location = useLocation(); // Added for URL-based form state
-  const handleDelete = (key) => {
-    const newData = data.filter((item) => item.key !== key);
-    setData(newData);
-    message.success('Product deleted successfully');
+const handleDelete = async (key) => {
+  try {
+    await axios.delete(`http://localhost:5000/api/products/${key}`);
+    toast.success('Product deleted successfully');
+    await fetchProducts();
+  } catch (error) {
+    toast.error('Failed to delete product');
+  }
+};
+
+  useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/products');
+      setData(res.data.map(product => ({ ...product, key: product._id })));
+    } catch (err) {
+      toast.error('Failed to load products');
+    }
   };
+  fetchProducts();
+}, []);
 
 useEffect(() => {
   const params = new URLSearchParams(location.search);
@@ -154,10 +174,10 @@ useEffect(() => {
     setTimeout(() => storageInputRef.current?.focus(), 0);
   };
 const editProduct = (key) => {
+  // key is now the MongoDB _id
   const product = data.find((item) => item.key === key);
   if (!product) return;
 
-  // Convert stored Base64 images to fileList format
   const initialFiles = product.images?.map((img, index) => ({
     uid: `-${index}`,
     name: `image-${index}.png`,
@@ -165,7 +185,6 @@ const editProduct = (key) => {
     preview: img,
   })) || [];
 
-  // Set all form fields including images
   form.setFieldsValue({
     ...product,
     sizes: product.sizes,
@@ -177,19 +196,26 @@ const editProduct = (key) => {
   setSizes(product.sizes || []);
   setStorages(product.storages || []);
   setTags(product.tags || []);
-  setEditingKey(key);
+  setEditingKey(product._id); // Use _id here!
   navigate(`${location.pathname}?form=add`, { replace: false });
-  setShowForm(true)
+  setShowForm(true);
+};
+
+const fetchProducts = async () => {
+  try {
+    const res = await axios.get('http://localhost:5000/api/products');
+    setData(res.data.map(product => ({ ...product, key: product._id })));
+  } catch (err) {
+    toast.error('Failed to refresh products');
+  }
 };
 
  // Update handleFinish to be async
 const handleFinish = async (values) => {
   try {
-    // Convert all images to Base64
     const imageData = await Promise.all(
       fileList.map(file => getBase64(file))
     );
-
     const productData = {
       ...values,
       images: imageData,
@@ -199,30 +225,23 @@ const handleFinish = async (values) => {
     };
 
     if (editingKey !== null) {
-      // Update existing product
-      const newData = data.map((item) => 
-        item.key === editingKey ? { ...item, ...productData } : item
-      );
-      setData(newData);
-      message.success('Product updated successfully!');
+      await axios.put(`http://localhost:5000/api/products/${editingKey}`, productData);
+      toast.success('Product updated successfully!');
     } else {
-      // Add new product
-      const newKey = data.length ? Math.max(...data.map(d => d.key)) + 1 : 1;
-      const newProduct = { key: newKey, ...productData };
-      setData([...data, newProduct]);
-      message.success('Product added successfully!');
+      await axios.post('http://localhost:5000/api/products', productData);
+      toast.success('Product added successfully!');
     }
-
+    await fetchProducts();
     form.resetFields();
     setFileList([]);
     setEditingKey(null);
     setShowForm(false);
   } catch (error) {
-    message.error('Error processing images');
+    toast.error('Failed to save product. Please try again.');
   }
 };
   const handleFinishFailed = () => {
-    message.error('Please complete all required fields correctly.');
+    toast.error('Please complete all required fields.');
   };
 
 const toggleForm = () => {
@@ -316,20 +335,19 @@ const toggleForm = () => {
               Add Products
             </Button>
           </div>
-   <Table
-  columns={columns}
-  dataSource={
-    data.filter(item =>
-      Object.values(item)
-        .join(' ')
-        .toLowerCase()
-        .includes(searchText.toLowerCase())
-    )
-  }
-  pagination={{ pageSize: 10 }}
-  style={{ marginTop: 24 }}
-  scroll={{ x: 'max-content' }}
-/>
+ <Table
+            columns={columns}
+            dataSource={data.filter((item) =>
+              Object.values(item)
+                .join(' ')
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
+            )}
+            pagination={{ pageSize: 10 }}
+            style={{ marginTop: 24 }}
+            scroll={{ x: 'max-content' }}
+            rowKey="_id"
+          />
 
         </>
       )}
@@ -350,7 +368,6 @@ const toggleForm = () => {
   />
   <Title level={4} style={{ margin: 0 }}>Product Information</Title>
 </div>
-
 
               <Form.Item
                 name="productName"
@@ -399,7 +416,8 @@ const toggleForm = () => {
                         <Form.Item
                           name={`${level.toLowerCase()}Price`}
                           style={{ flex: 1 }}
-                          rules={[{ required: true, message: 'Regular Price is required' }]}
+                          rules={[{ required: true, message: 'Regular Price is required' }]
+                          }
                         >
                           <InputNumber min={0} placeholder="Regular Price" style={{ width: '100%' }} />
                         </Form.Item>
@@ -443,6 +461,7 @@ const toggleForm = () => {
                     >
                       <InputNumber min={0} placeholder="Regular Price" style={{ width: '100%' }} />
                     </Form.Item>
+
                     <Form.Item
                       name="discountPrice"
                       style={{ flex: 1 }}
@@ -450,6 +469,7 @@ const toggleForm = () => {
                     >
                       <InputNumber min={0} placeholder="Discounted Price" style={{ width: '100%' }} />
                     </Form.Item>
+
                   </div>
 
                   <div className="form-item" style={{ display: 'flex', gap: '16px' }}>
@@ -460,6 +480,7 @@ const toggleForm = () => {
                     >
                       <InputNumber min={0} placeholder="Weight" style={{ width: '100%' }} />
                     </Form.Item>
+
                     <Form.Item
                       name="stock"
                       style={{ flex: 1 }}
@@ -569,6 +590,7 @@ const toggleForm = () => {
           </Form.Item> */}
         </Form>
       )}
+        <ToastContainer />
     </div>
   );
 };

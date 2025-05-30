@@ -15,6 +15,7 @@ import ProductDetails from "../Pages/Productdetails/Productdetails";
 import Orders from "../Pages/Orders/Orders";
 import Orderdetails from "../Pages/Orderdetails/Orderdetails";
 import LogoutConfirmation from "../Components/Logoutconfirm/Logoutconfirm";
+import ProtectedRoute from "../ProtectedRoute";
 
 
 const AppRoutes = () => {
@@ -28,7 +29,8 @@ const AppRoutes = () => {
 <Route path="/logout-confirm" element={<LogoutConfirmation/>} />
 
       {/* Routes with sidebar + header layout */}
-      <Route element={<AppLayout />}>
+
+      <Route element={<ProtectedRoute><AppLayout /> </ProtectedRoute>}>
         <Route index element={<Dashboard />} />
         <Route path="/customers" element={<Customer />} />
         <Route path="/products" element={<Products />} />

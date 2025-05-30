@@ -179,7 +179,7 @@ const Orderdetails = () => {
           <div className="box full">
             <p className="label">Status</p>
             <div className="status-options">
-              {['Pending', 'Approved', 'Delivered', 'Rejected', 'On the way'].map((opt) => (
+              {['Pending', 'Approved', 'Rejected', 'On the way', 'Delivered'].map((opt) => (
                 <label key={opt}>
                   <input
                     type="radio"
