@@ -1,7 +1,7 @@
 .order-details {
 
 width: 100%;
-max-width: 530px;
+max-width: 600px;
   .header3 {
     display: flex;
     align-items:baseline;
@@ -96,7 +96,7 @@ max-width: 530px;
 
   .status-options {
     display: flex;
-    gap: 20px;
+    gap: 16px;
       label {
     display: flex;
     align-items: center; // This centers radio + text vertically
@@ -213,16 +213,11 @@ max-width: 530px;
 }
 
 
-
-/* 🌐 Mobile Responsiveness (max-width: 768px) */
 @media (max-width: 768px) {
   .order-details {
-    max-width: 100%;
-    padding: 0 16px;
+    // padding: 0 16px;
 
     .header3 {
-      align-items: flex-start;
-      gap: 4px;
 
       .title {
         font-size: 18px;
@@ -236,31 +231,51 @@ max-width: 530px;
     .row {
       flex-direction: column;
       gap: 16px;
+    }
 
-      .box {
-        flex: 100%;
+    .box,
+    .box_full {
+      width: 100%;
+
+      .label {
+        font-size: 14px;
       }
+    }
+
+    .status-options {
+      flex-direction: column;
+      gap: 12px;
     }
 
     .actions {
       flex-direction: column-reverse;
       align-items: stretch;
 
-      .update,
-      .cancel {
+      .cancel,
+      .update {
         width: 100%;
+        text-align: center;
       }
     }
   }
 
   .digital-packages,
   .non-digital-info {
+    h3 {
+      font-size: 16px;
+    }
+
+    .digital-product-section,
     .row {
       flex-direction: column;
       gap: 16px;
 
       .box {
-        flex: 100%;
+        width: 100%;
+      }
+
+      h4 {
+        font-size: 15px;
       }
     }
   }

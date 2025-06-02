@@ -56,6 +56,7 @@ const Orders = ({ showSearch = true, showPagination = true ,rowLimit}) => {
           Rejected: 'red',
           'On the way': 'blue',
           Approved: 'purple',
+           'Under Process': 'geekblue',
         };
         return <Tag color={colorMap[status] || 'default'}>{status}</Tag>;
       },
@@ -77,7 +78,7 @@ const Orders = ({ showSearch = true, showPagination = true ,rowLimit}) => {
     },
   ];
 
-  const statuses = ['Delivered', 'Pending', 'Rejected', 'On the way', 'Approved'];
+  const statuses = ['Delivered', 'Pending', 'Rejected', 'On the way', 'Approved','Under Process'];
   const categories = ['Digital Products', 'Electronics', 'Stationary', 'Toys & Games'];
 const data = Array.from({ length: 20 }, (_, index) => {
   const category = categories[index % categories.length];
