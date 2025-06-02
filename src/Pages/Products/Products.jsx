@@ -377,13 +377,13 @@ const toggleForm = () => {
                 <Input placeholder="Enter product name" />
               </Form.Item>
 
-              <Form.Item
+              {/* <Form.Item
                 name="sku"
                 label="SKU"
                 rules={[{ required: true, message: 'SKU is required' }]}
               >
                 <Input placeholder="Enter SKU" />
-              </Form.Item>
+              </Form.Item> */}
    <Form.Item label="Tags" name="tags" initialValue={editingProduct ? editingProduct.tags : []}>
                 <Select
                   mode="tags"
@@ -520,7 +520,7 @@ const toggleForm = () => {
                   <Form.Item>
                     <Select
                       mode="multiple"
-                      placeholder="Add storage locations"
+                      placeholder="Add storage"
                       value={storages}
                       onChange={handleStorageChange}
                       popupRender={(menu) => (
